@@ -1,0 +1,7 @@
+Der folgende Inhalt wurde im Rahmen einer Digitalisierung von Dokumenten per Texterkennung in einem Dokument erkannt. Finde einen passenden Titel der den Inhalt des Doument beschreibt.
+
+Formatiere die Antwort ausschließlich in:
+Titel
+
+Der Inhalt:
+%s
