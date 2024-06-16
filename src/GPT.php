@@ -35,7 +35,7 @@ class GPT
     public function prompt(string $prompt, string ...$args) : string
     {
         foreach ($args as $i => $arg) {
-            $args[$i] = preg_replace('/\s+/', ' ', $arg);
+            $args[$i] = mb_convert_encoding(preg_replace('/\s+/', ' ', $arg), 'UTF-8', 'UTF-8');
         }
 
         $prompt = file_get_contents(self::DIR . DIRECTORY_SEPARATOR . $prompt);
