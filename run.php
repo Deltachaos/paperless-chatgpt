@@ -13,5 +13,6 @@ $job = new \App\Job($gpt, $http, $_SERVER['PAPERLESS_SEARCH'] ?? 'Scanned_from_a
 
 while (true) {
     $job();
+    echo "Sleep 60 seconds\n";
     sleep(5 * 60);
 }
