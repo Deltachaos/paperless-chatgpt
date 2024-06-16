@@ -6,6 +6,7 @@ use OpenAI\Client;
 
 class GPT
 {
+    private const MAX_LENGTH = 16385 / 4.5;
     public const DIR = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config';
     private const MODEL = 'gpt-3.5-turbo';
     private const TEMPERATURE = 0.7;
@@ -33,8 +34,12 @@ class GPT
 
     public function prompt(string $prompt, string ...$args) : string
     {
+        foreach ($args as $i => $arg) {
+            $args[$i] = preg_replace('/\s+/', ' ', $arg);
+        }
+
         $prompt = file_get_contents(self::DIR . DIRECTORY_SEPARATOR . $prompt);
 
-        return $this->response(sprintf($prompt, ...$args));
+        return $this->response(substr(sprintf($prompt, ...$args), 0, floor(self::MAX_LENGTH)));
     }
 }
