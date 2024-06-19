@@ -29,9 +29,8 @@ class Job
                     if (!empty($title)) {
                         echo " => Update document title: {$title}\n";
                         $document['title'] = $title;
-                        $document['tags'] = array_diff($document['tags'], [$this->search]);
+                        $document['tags'] = array_values(array_diff($document['tags'], [$this->search]));
                         echo " => Update with tags: " . implode(",", $document['tags']) . "; Title: " . $document['title'] . "\n";
-                        echo json_encode($document) . "\n";
                         $response = $this->http->request('PUT', '/api/documents/' . $document['id'] . '/', [
                             'json' => $document,
                         ])->getContent();
