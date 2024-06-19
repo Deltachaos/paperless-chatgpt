@@ -7,7 +7,7 @@ Creates a title for all documents on a Paperless NGX server containing a specifc
 ```sh
 export PAPERLESS_SERVER=https://paperless.example.com
 export PAPERLESS_KEY=01askk**21378asdkl # From your user profile
-export PAPERLESS_SEARCH=Scanned_from_Scanner # The text to search in the documents
+export PAPERLESS_SEARCH=123 # The tag to search in the documents, will be removed after processing
 export OPENAI_KEY=sess-***** # from your openai profile
 export INTERVAL=120 # sleep between checks in seconds. Default 5 minutes
 ```
