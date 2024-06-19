@@ -38,7 +38,7 @@ class Job
                 } catch (Throwable $exception) {
                     echo "Error creating title for document {$document['id']}: {$exception->getMessage()}\n";
                     if ($exception instanceof ClientException) {
-                        echo "Content:" . $exception->getResponse()->getContent() . "\n";
+                        echo "Content:" . $exception->getResponse()->getContent(false) . "\n";
                     }
                 }
             }
