@@ -31,9 +31,9 @@ class Job
                         $document['title'] = $title;
                         $document['tags'] = array_diff($document['tags'], [$this->search]);
                         echo " => Update with tags: " . implode(",", $document['tags']) . "; Title: " . $document['title'] . "\n";
-                        $this->http->request('PUT', '/api/documents/' . $document['id'] . '/', [
+                        $response = $this->http->request('PUT', '/api/documents/' . $document['id'] . '/', [
                             'json' => $document,
-                        ]);
+                        ])->getContent();
                     }
                 } catch (Throwable $exception) {
                     echo "Error creating title for document {$document['id']}: {$exception->getMessage()}\n";
