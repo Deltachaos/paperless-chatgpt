@@ -10,7 +10,7 @@ class Job
     public function __construct(
         private readonly GPT $gpt,
         private readonly HttpClientInterface $http,
-        private readonly string $search,
+        private readonly int $search,
     ) {}
 
     public function __invoke()
@@ -28,6 +28,7 @@ class Job
                     if (!empty($title)) {
                         echo " => Update document title: {$title}\n";
                         $document['title'] = $title;
+                        $document['tags'] = array_diff($document['tags'], [$this->search]);
                         $this->http->request('PUT', '/api/documents/' . $document['id'] . '/', [
                             'json' => $document,
                         ]);
