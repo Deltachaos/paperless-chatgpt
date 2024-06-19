@@ -29,6 +29,7 @@ class Job
                         echo " => Update document title: {$title}\n";
                         $document['title'] = $title;
                         $document['tags'] = array_diff($document['tags'], [$this->search]);
+                        echo " => Update with tags: " . implode(",", $document['tags']) . "; Title: " . $document['title'] . "\n";
                         $this->http->request('PUT', '/api/documents/' . $document['id'] . '/', [
                             'json' => $document,
                         ]);
