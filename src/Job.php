@@ -15,7 +15,7 @@ class Job
 
     public function __invoke()
     {
-        $base = '/api/documents/?title__icontains=' . urlencode($this->search);
+        $base = '/api/documents/?tags__id__all=' . urlencode($this->search);
         $page = 1;
         do {
             $response = $this->http->request('GET', $base . '&page=' . $page)->toArray();
