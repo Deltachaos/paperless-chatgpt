@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Symfony\Component\HttpClient\Exception\ClientException;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Throwable;
 
@@ -36,6 +37,9 @@ class Job
                     }
                 } catch (Throwable $exception) {
                     echo "Error creating title for document {$document['id']}: {$exception->getMessage()}\n";
+                    if ($exception instanceof ClientException) {
+                        echo $exception->getResponse()->getContent() . "\n";
+                    }
                 }
             }
         } while($next !== null);
